@@ -1,10 +1,20 @@
 # Platformer
 
-Platformer Is A Simple Side Scrolling Platform Game
+Platformer Is A Simple Side Scrolling Platform Game By TeamOMG
 
 
-# Developers:
-https://github.com/Team-OMG
-https://github.com/AmazingMat
-https://github.com/danielunitydev
-https://github.com/HighPulpOrangeJuice
+# Developers And Credits:
+-https://github.com/Team-OMG - Organisation
+----------------------------------------------------
+-https://github.com/AmazingMat - Programmer
+----------------------------------------------------
+-https://github.com/danielunitydev - Programmer
+----------------------------------------------------
+-https://github.com/HighPulpOrangeJuice - SoundFX
+----------------------------------------------------
+-https://github.com/enokociraj - Programmer
+----------------------------------------------------
+LICH LABS - SoundFX
+----------------------------------------------------
+https://github.com/gmnovi - SoundFX
+----------------------------------------------------
