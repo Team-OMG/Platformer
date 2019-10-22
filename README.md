@@ -14,7 +14,7 @@ Platformer Is A Simple Side Scrolling Platform Game By TeamOMG
 ----------------------------------------------------
 -https://github.com/enokociraj - Programmer
 ----------------------------------------------------
-LICH LABS - SoundFX
+-LICH LABS - SoundFX
 ----------------------------------------------------
-https://github.com/gmnovi - SoundFX
+-https://github.com/gmnovi - SoundFX
 ----------------------------------------------------
