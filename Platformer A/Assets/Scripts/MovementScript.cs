@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovementScript : MonoBehaviour
 {
-
+    [SerializeField] float Speed = 20;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -15,11 +15,6 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Fixedpdate()
     {
-
-        float H = Input.GetAxis("Horizontal");
-        float V = Input.GetAxis("Vertical");
-
-
 
     }
 }
