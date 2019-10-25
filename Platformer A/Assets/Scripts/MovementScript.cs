@@ -7,6 +7,8 @@ public class MovementScript : MonoBehaviour
     [SerializeField] float Speed = 10;
     [SerializeField] float jumpForce = 5;
     Rigidbody2D rb;
+
+    private bool OnGround = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +33,29 @@ public class MovementScript : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && OnGround)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            //Moving The Player
+
+            OnGround = false;
+            //Making Sure The Player Can't Jump While In The Air (Double Jump)
+            
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collision Detected");
+
+        if(collision.gameObject.CompareTag("Ground"))
+        { 
+            OnGround = true;
+            //Allowing The Player To Jump Again
+
+
+        }
+
+
     }
 }
