@@ -15,4 +15,10 @@ public class CoinScript : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Coin Collision Detected");
+
+    }
 }
