@@ -56,6 +56,13 @@ public class MovementScript : MonoBehaviour
 
         }
 
+        if (collision.gameObject.CompareTag("CoinTypeOne"))
+        {
+            Debug.Log("Player Collided With A Coin");
+
+
+        }
+
 
     }
 }
