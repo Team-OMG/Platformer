@@ -9,10 +9,20 @@ public class MovementScript : MonoBehaviour
     Rigidbody2D rb;
 
     private bool OnGround = true;
+
+    [SerializeField] AudioClip JumpSFX;
+    [SerializeField] AudioClip LandSFX;
+    [SerializeField] AudioClip WalkSFX;
+
+    public AudioSource Source; 
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        Source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,7 +50,10 @@ public class MovementScript : MonoBehaviour
 
             OnGround = false;
             //Making Sure The Player Can't Jump While In The Air (Double Jump)
-            
+
+            Source.PlayOneShot(JumpSFX, 0.5f);
+            //Playing The Hump SoundFX
+
         }
     }
 
@@ -53,9 +66,11 @@ public class MovementScript : MonoBehaviour
             OnGround = true;
             //Allowing The Player To Jump Again
 
+            Source.PlayOneShot(LandSFX, 2.5f);
+            //Playing The Landing Sound FX
+
 
         }
-
 
     }
 }
