@@ -66,7 +66,7 @@ public class MovementScript : MonoBehaviour
             OnGround = true;
             //Allowing The Player To Jump Again
 
-            Source.PlayOneShot(LandSFX, 2.5f);
+            Source.PlayOneShot(LandSFX, 3.8f);
             //Playing The Landing Sound FX
 
 
