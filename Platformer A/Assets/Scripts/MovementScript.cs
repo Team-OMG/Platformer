@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MovementScript : MonoBehaviour
 {
+    private int _score = 0;
+    private Score _uiManager;
+
     [SerializeField] float Speed = 10;
     [SerializeField] float jumpForce = 5;
     Rigidbody2D rb;
@@ -39,6 +42,8 @@ public class MovementScript : MonoBehaviour
         float moveBy = x * Speed;
 
         rb.velocity = new Vector2(moveBy, rb.velocity.y);
+
+        _uiManager = GameObject.Find("Canvas").GetComponent<Score>();
     }
 
     void Jump()
@@ -72,5 +77,11 @@ public class MovementScript : MonoBehaviour
 
         }
 
+    }
+
+    public void AddScore(int points)
+    {
+        _score += points;
+        _uiManager.UpdatePlayerScore(_score);
     }
 }

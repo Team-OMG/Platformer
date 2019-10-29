@@ -7,18 +7,27 @@ public class CoinScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Coin Collision Detected");
+        if (collision.tag == "Player")
+        {
+            MovementScript player = collision.gameObject.GetComponent<MovementScript>();
+
+            if (player != null)
+                player.AddScore(1);
+
+            Destroy(gameObject);
+        }
 
     }
+
 }
