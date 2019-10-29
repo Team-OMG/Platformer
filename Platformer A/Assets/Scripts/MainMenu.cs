@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private string firstLevel;
 
+    public GameObject optionScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +29,12 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
-
+        optionScreen.SetActive(true);
     }
 
     public void CloseOptions()
     {
-
+        optionScreen.SetActive(false);
     }
 
     public void QuitGame()

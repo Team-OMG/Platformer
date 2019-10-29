@@ -10,6 +10,9 @@ using DG.Tweening;
 
 public class MovementScript : MonoBehaviour
 {
+    private int _score = 0;
+    private Score _uiManager;
+
     [SerializeField] float Speed = 10;
     [SerializeField] float jumpForce = 5;
     Rigidbody2D rb;
@@ -45,6 +48,8 @@ public class MovementScript : MonoBehaviour
         float moveBy = x * Speed;
 
         rb.velocity = new Vector2(moveBy, rb.velocity.y);
+
+        _uiManager = GameObject.Find("Canvas").GetComponent<Score>();
     }
 
     void Jump()
@@ -113,5 +118,11 @@ public class MovementScript : MonoBehaviour
     {
         yield return new WaitForSeconds(XSecs); //We make the couroutine wait X seconds
         SceneManager.LoadScene(NameToLoad); //We make the couroutine load a scene
+    }
+
+    public void AddScore(int points)
+    {
+        _score += points;
+        _uiManager.UpdatePlayerScore(_score);
     }
 }
