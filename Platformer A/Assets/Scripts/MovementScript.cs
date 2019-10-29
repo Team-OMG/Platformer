@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This will acces me to the sceneManager so i can switch scene in this script
+using UnityEngine.SceneManagement;
+
+//I acces to the package "Hotween" that i installed from the asset store. Here's a link for more information http://dotween.demigiant.com/
+using DG.Tweening;
+
 public class MovementScript : MonoBehaviour
 {
     [SerializeField] float Speed = 10;
@@ -14,7 +20,7 @@ public class MovementScript : MonoBehaviour
     [SerializeField] AudioClip LandSFX;
     [SerializeField] AudioClip WalkSFX;
 
-    public AudioSource Source; 
+    public AudioSource Source;
 
 
     // Start is called before the first frame update
@@ -59,10 +65,10 @@ public class MovementScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision Detected");
+        //Debug.Log("Collision Detected");
 
-        if(collision.gameObject.CompareTag("Ground"))
-        { 
+        if (collision.gameObject.CompareTag("Ground"))
+        {
             OnGround = true;
             //Allowing The Player To Jump Again
 
@@ -71,6 +77,41 @@ public class MovementScript : MonoBehaviour
 
 
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Adding the door's event
+
+        if (collision.gameObject.tag == "Door") //Check if we touch the door
+        {
+            //Access to the collider of the player
+            BoxCollider2D box = this.GetComponent<BoxCollider2D>();
+            //Remove the box component ; that he's for avoiding some bugs that could happens
+            box.enabled = false;
+            //Make the rigidbody not simulated ; for avoiding the player to fall down when he try to reach the door
+            rb.simulated = false;
+
+            //I acces to the hotween component that make things move good
+            this.transform.DOMove(collision.gameObject.transform.position, 1);
+            //I make the player rotate in 1 seconds
+            this.transform.DORotate(new Vector3(0, 0, 180), 1);
+            //I make the player's scale = 0 in 1 seconds
+            this.transform.DOScale(0, 1);
+
+            //I acces to the Door's script. It's only to know wich scene we need to load  by the variable
+            Door DoorScript = collision.GetComponent<Door>();
+
+            //I start the coroutine. It's like a void but it can do more things like wait seconds, wait the end of frame etc..
+            //We always launch a couroutine this ways.
+            StartCoroutine(LoadSceneAfterXSecs(DoorScript.SceneToLoad, 1)); // I tell to the couroutine to switch scene in 1 seconds
+        }
+    }
+
+    //This is the coroutine
+    public IEnumerator LoadSceneAfterXSecs(string NameToLoad, float XSecs)
+    {
+        yield return new WaitForSeconds(XSecs); //We make the couroutine wait X seconds
+        SceneManager.LoadScene(NameToLoad); //We make the couroutine load a scene
     }
 }

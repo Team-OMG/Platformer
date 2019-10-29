@@ -22,7 +22,7 @@ public class TimerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -30,7 +30,7 @@ public class TimerScript : MonoBehaviour
     {
 
         Time++;
-        Debug.Log("Game Has Been Running For: " + Time + " Seconds");
+        //Debug.Log("Game Has Been Running For: " + Time + " Seconds");
         txt.text = "Time: " + Time;
 
     }
