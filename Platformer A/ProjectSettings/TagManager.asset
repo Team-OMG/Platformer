@@ -8,6 +8,7 @@ TagManager:
   - SpeedPwrUp
   - CoinTypeOne
   - Door
+  - Damage
   layers:
   - Default
   - TransparentFX
