@@ -122,10 +122,15 @@ public class MovementScript : MonoBehaviour
         //The Code Below Is For The Health System Not The Door System
         if (collision.gameObject.CompareTag("Damage"))
         {
-            
+            if (Health > 0)
+            {
+                int damage = Random.Range(9, 22);
 
+                Health = Health - damage;
 
-
+                Destroy(collision.gameObject);
+                //Destroying The Mushroom After A Player Has Collided With It To Stop The Double Damage Problem I Had When Testing
+            }
         }
     }
 
