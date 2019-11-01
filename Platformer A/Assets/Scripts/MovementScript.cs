@@ -36,6 +36,7 @@ public class MovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         IsAlive = true;
         Source = GetComponent<AudioSource>();
+        //Setting Bools And Getting Components
     }
 
     // Update is called once per frame
@@ -67,6 +68,7 @@ public class MovementScript : MonoBehaviour
     void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && OnGround && IsAlive)
+            //Checking If The Player Is On The Ground (To Prevent Double Jumping) Before Allowing Them To Jump
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             //Moving The Player
@@ -151,7 +153,7 @@ public class MovementScript : MonoBehaviour
 
             Debug.Log("Game Over, Player Is Dead");
             IsAlive = false;
-
+            //Stopping The Player From Jumping And Moving By Changing The Alive Bool To False
         }
 
         HealthTxt.text = "Health: " + Health + "%";
