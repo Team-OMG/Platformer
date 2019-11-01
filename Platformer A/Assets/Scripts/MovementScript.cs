@@ -19,6 +19,7 @@ public class MovementScript : MonoBehaviour
     Rigidbody2D rb;
 
     private bool OnGround = true;
+    private bool IsAlive = true;
 
     [SerializeField] AudioClip JumpSFX;
     [SerializeField] AudioClip LandSFX;
@@ -33,18 +34,23 @@ public class MovementScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        IsAlive = true;
         Source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
 
-        HealthTxt.text = "Health: " + Health + "%";
-        //Updating The Health Text To Specify The Health, I'm Currently Going To Do This In A Percentage Based System Rather Than A Points Based System
+        if(IsAlive)
+        { 
+        Move();}
+        //Checking If The Player Is Alive Before Running The Movement Code
+
+        Jump();
+        CheckHealth();
+
+    
     }
 
     void Move()
@@ -60,7 +66,7 @@ public class MovementScript : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && OnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && OnGround && IsAlive)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             //Moving The Player
@@ -134,6 +140,27 @@ public class MovementScript : MonoBehaviour
             }
         }
     }
+
+
+
+    public void CheckHealth()
+    {
+
+        if (Health < 1)
+        {
+
+            Debug.Log("Game Over, Player Is Dead");
+            IsAlive = false;
+
+        }
+
+        HealthTxt.text = "Health: " + Health + "%";
+        //Updating The Health Text To Specify The Health, I'm Currently Going To Do This In A Percentage Based System Rather Than A Points Based System
+    }
+
+
+
+
 
     //This is the coroutine
     public IEnumerator LoadSceneAfterXSecs(string NameToLoad, float XSecs)
