@@ -9,6 +9,7 @@ TagManager:
   - CoinTypeOne
   - Door
   - Damage
+  - DoorExit
   layers:
   - Default
   - TransparentFX
