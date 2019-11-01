@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //This will acces me to the sceneManager so i can switch scene in this script
 using UnityEngine.SceneManagement;
@@ -25,6 +26,8 @@ public class MovementScript : MonoBehaviour
 
     public AudioSource Source;
 
+    [SerializeField] float Health = 100;
+    public Text HealthTxt;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +42,9 @@ public class MovementScript : MonoBehaviour
     {
         Move();
         Jump();
+
+        HealthTxt.text = "Health: " + Health + "%";
+        //Updating The Health Text To Specify The Health, I'm Currently Going To Do This In A Percentage Based System Rather Than A Points Based System
     }
 
     void Move()
@@ -82,6 +88,7 @@ public class MovementScript : MonoBehaviour
 
 
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -110,6 +117,15 @@ public class MovementScript : MonoBehaviour
             //I start the coroutine. It's like a void but it can do more things like wait seconds, wait the end of frame etc..
             //We always launch a couroutine this ways.
             StartCoroutine(LoadSceneAfterXSecs(DoorScript.SceneToLoad, 1)); // I tell to the couroutine to switch scene in 1 seconds
+        }
+
+        //The Code Below Is For The Health System Not The Door System
+        if (collision.gameObject.CompareTag("Damage"))
+        {
+            
+
+
+
         }
     }
 
