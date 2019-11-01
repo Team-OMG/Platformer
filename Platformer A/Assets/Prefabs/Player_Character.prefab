@@ -31,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539516461639773379}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.75, y: -3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
@@ -333,6 +333,8 @@ MonoBehaviour:
   LandSFX: {fileID: 8300000, guid: 43cf372227161f44190499df232e07a6, type: 3}
   WalkSFX: {fileID: 8300000, guid: 6ba4c3fc5df8b424d8e97271529e9589, type: 3}
   Source: {fileID: 539516461639773386}
+  Health: 100
+  HealthTxt: {fileID: 0}
 --- !u!1 &539516461780582931
 GameObject:
   m_ObjectHideFlags: 0

@@ -127,6 +127,7 @@ public class MovementScript : MonoBehaviour
                 int damage = Random.Range(9, 22);
 
                 Health = Health - damage;
+                //Removing The Damage From The Health Status
 
                 Destroy(collision.gameObject);
                 //Destroying The Mushroom After A Player Has Collided With It To Stop The Double Damage Problem I Had When Testing
