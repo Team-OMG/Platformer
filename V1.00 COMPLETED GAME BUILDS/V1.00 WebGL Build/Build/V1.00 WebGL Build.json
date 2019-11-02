@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "Platformer A",
+"productVersion": "0.1",
+"dataUrl": "V1.00 WebGL Build.data.unityweb",
+"wasmCodeUrl": "V1.00 WebGL Build.wasm.code.unityweb",
+"wasmFrameworkUrl": "V1.00 WebGL Build.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.2.11f1"
+}
