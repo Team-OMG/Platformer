@@ -43,19 +43,25 @@ public class MovementScript : MonoBehaviour
     void Update()
     {
 
-        if(IsAlive)
-        { 
-        Move();}
+        if (IsAlive)
+        {
+            Move();
+        }
         //Checking If The Player Is Alive Before Running The Movement Code
 
         Jump();
         CheckHealth();
 
-    
+
     }
+
+    public Sprite AstroStay;
 
     void Move()
     {
+        //This take the animator component for verifying if he need to walk or not
+        Animator thisAnimator = this.GetComponent<Animator>();
+
         float x = Input.GetAxisRaw("Horizontal");
 
         float moveBy = x * Speed;
@@ -63,12 +69,44 @@ public class MovementScript : MonoBehaviour
         rb.velocity = new Vector2(moveBy, rb.velocity.y);
 
         _uiManager = GameObject.Find("Canvas").GetComponent<Score>();
+
+        //This check if the player don't move
+        if (x > -0.1f && x < 0.1f)
+        {
+            //if the player move make him stop running by desactiving the animator component
+            thisAnimator.enabled = false;
+            //Get the render of the sprites
+            SpriteRenderer render = this.GetComponent<SpriteRenderer>();
+            //And make him be the sprites assigned
+            render.sprite = AstroStay;
+        }
+        if (x < 0)
+        {
+            //Make the animator active so he run
+            thisAnimator.enabled = true;
+            //Make the player look to the left because he walk to the left
+            this.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if (x > 0)
+        {
+            //Make the animator active so he run
+            thisAnimator.enabled = true;
+            //Make the player look to the right because he walk to the right
+            this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        //check if the player in not in ground
+        if (OnGround == false)
+        {
+            //if it's true that active the animator component even if he don't move
+            thisAnimator.enabled = true;
+        }
     }
 
     void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && OnGround && IsAlive)
-            //Checking If The Player Is On The Ground (To Prevent Double Jumping) Before Allowing Them To Jump
+        //Checking If The Player Is On The Ground (To Prevent Double Jumping) Before Allowing Them To Jump
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             //Moving The Player
@@ -134,16 +172,41 @@ public class MovementScript : MonoBehaviour
             {
                 int damage = Random.Range(9, 22);
 
-                Health = Health - damage;
+                Health -= damage;
                 //Removing The Damage From The Health Status
+
+                //Creating a gamobject that will make the animation of taking a coin:
+
+                //Making the gameobject have the coordinates of the point
+                CoinAnimation.transform.position = collision.transform.position;
+                //Creating the animation's gameobject
+                Instantiate(CoinAnimation);
 
                 Destroy(collision.gameObject);
                 //Destroying The Mushroom After A Player Has Collided With It To Stop The Double Damage Problem I Had When Testing
+
             }
+        }
+
+        //If the gameobject detect a coin
+        if (collision.gameObject.tag == "CoinTypeOne")
+        {
+            //Add 1 to the score
+            AddScore(1);
+
+            //Creating a gamobject that will make the animation of taking a coin:
+
+            //Making the gameobject have the coordinates of the point
+            CoinAnimation.transform.position = collision.transform.position;
+            //Creating the animation's gameobject
+            Instantiate(CoinAnimation);
+
+            Destroy(collision.gameObject);
+            //Destroying The Coin After A Player Has Collided With It.
         }
     }
 
-
+    public GameObject CoinAnimation;
 
     public void CheckHealth()
     {
@@ -154,11 +217,20 @@ public class MovementScript : MonoBehaviour
             Debug.Log("Game Over, Player Is Dead");
             IsAlive = false;
             //Stopping The Player From Jumping And Moving By Changing The Alive Bool To False
+
+            //Adding a restart system :
+
+            //The scene reload
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            //The player regain maximum healt
+            Health = 100;
         }
 
         HealthTxt.text = "Health: " + Health + "%";
         //Updating The Health Text To Specify The Health, I'm Currently Going To Do This In A Percentage Based System Rather Than A Points Based System
     }
+
 
 
 

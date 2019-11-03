@@ -18,15 +18,7 @@ public class CoinScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
-        {
-            MovementScript player = collision.gameObject.GetComponent<MovementScript>();
 
-            if (player != null)
-                player.AddScore(1);
-
-            Destroy(gameObject);
-        }
 
     }
 
