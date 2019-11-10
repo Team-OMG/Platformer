@@ -9,7 +9,8 @@ TagManager:
   - CoinTypeOne
   - Door
   - Damage
-  - DoorExit
+  - Level02Respawn
+  - DoorExitLevel1
   layers:
   - Default
   - TransparentFX

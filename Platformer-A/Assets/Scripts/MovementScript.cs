@@ -135,9 +135,16 @@ public class MovementScript : MonoBehaviour
 
         }
 
-        if (collision.gameObject.CompareTag("DoorExit"))
+        if (collision.gameObject.CompareTag("DoorExitLevel1"))
         {
             //The Player Has Collided With The Exit Door
+            SceneManager.LoadScene("Level02");
+
+        }
+
+        if (collision.gameObject.CompareTag("Level02Respawn"))
+        {
+            //The Player Has Collided With The Out Of World Ground Barrier
             SceneManager.LoadScene("Level02");
 
         }
