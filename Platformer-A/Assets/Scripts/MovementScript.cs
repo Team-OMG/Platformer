@@ -135,6 +135,13 @@ public class MovementScript : MonoBehaviour
 
         }
 
+        if (collision.gameObject.CompareTag("DoorExit"))
+        {
+            //The Player Has Collided With The Exit Door
+            SceneManager.LoadScene("Level02");
+
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
