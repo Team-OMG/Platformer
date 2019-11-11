@@ -119,7 +119,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 20
+  m_Mass: 32
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -204,7 +204,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 3.5961084}
+  m_Offset: {x: 0.0000009536743, y: 3.5237813}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -215,7 +215,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.31, y: 2.1058083}
+  m_Size: {x: 1.968092, y: 1.961154}
   m_EdgeRadius: 0
 --- !u!82 &7911653724626622690
 AudioSource:
@@ -325,11 +325,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e70d43b177e744e93b842dba9b9790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  jumpForce: 7
+  Speed: 15
+  jumpForce: 7.5
   JumpSFX: {fileID: 8300000, guid: e333e8faa0006354e903218dde4ee20e, type: 3}
   LandSFX: {fileID: 8300000, guid: 43cf372227161f44190499df232e07a6, type: 3}
   WalkSFX: {fileID: 8300000, guid: 6ba4c3fc5df8b424d8e97271529e9589, type: 3}
+  DamageSFX: {fileID: 8300000, guid: 77b1e2897c39ad14ea4ef7a4b0e36646, type: 3}
   Source: {fileID: 7911653724626622690}
   Health: 100
   HealthTxt: {fileID: 0}

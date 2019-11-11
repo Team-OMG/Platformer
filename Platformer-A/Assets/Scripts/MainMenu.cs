@@ -41,4 +41,11 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void CreditsMenuOpen()
+    {
+
+        SceneManager.LoadScene("Credits");
+
+    }
 }
