@@ -330,6 +330,7 @@ MonoBehaviour:
   JumpSFX: {fileID: 8300000, guid: e333e8faa0006354e903218dde4ee20e, type: 3}
   LandSFX: {fileID: 8300000, guid: 43cf372227161f44190499df232e07a6, type: 3}
   WalkSFX: {fileID: 8300000, guid: 6ba4c3fc5df8b424d8e97271529e9589, type: 3}
+  DamageSFX: {fileID: 8300000, guid: 77b1e2897c39ad14ea4ef7a4b0e36646, type: 3}
   Source: {fileID: 7911653724626622690}
   Health: 100
   HealthTxt: {fileID: 0}

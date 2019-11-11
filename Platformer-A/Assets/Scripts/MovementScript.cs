@@ -24,6 +24,7 @@ public class MovementScript : MonoBehaviour
     [SerializeField] AudioClip JumpSFX;
     [SerializeField] AudioClip LandSFX;
     [SerializeField] AudioClip WalkSFX;
+    [SerializeField] AudioClip DamageSFX;
 
     public AudioSource Source;
 
@@ -198,6 +199,9 @@ public class MovementScript : MonoBehaviour
 
                 Destroy(collision.gameObject);
                 //Destroying The Mushroom After A Player Has Collided With It To Stop The Double Damage Problem I Had When Testing
+
+                Source.PlayOneShot(DamageSFX, 0.8f);
+                //Playing The Damage Sound When The Player Collides With A Mushroom
 
             }
         }

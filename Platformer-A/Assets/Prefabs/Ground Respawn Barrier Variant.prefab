@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 9116318755918232025, guid: 139499927acc994469aa1809296db711,
         type: 3}
       propertyPath: m_TagString
-      value: Respawn
+      value: Level02Respawn
       objectReference: {fileID: 0}
     - target: {fileID: 9116318755918232028, guid: 139499927acc994469aa1809296db711,
         type: 3}
