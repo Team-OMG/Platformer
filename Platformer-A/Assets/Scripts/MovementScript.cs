@@ -53,17 +53,25 @@ public class MovementScript : MonoBehaviour
         Jump();
         CheckHealth();
 
+        Weapon();
 
+        //Check if the player if falling into the deep. If yes it means he is dead
+        if (transform.position.y < -30)
+        {
+            //The Player Has Collided With The Out Of World Ground Barrier so he die
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     public Sprite AstroStay;
+    float x;
 
     void Move()
     {
         //This take the animator component for verifying if he need to walk or not
         Animator thisAnimator = this.GetComponent<Animator>();
 
-        float x = Input.GetAxisRaw("Horizontal");
+        x = Input.GetAxisRaw("Horizontal");
 
         float moveBy = x * Speed;
 
@@ -139,16 +147,16 @@ public class MovementScript : MonoBehaviour
         if (collision.gameObject.CompareTag("DoorExitLevel1"))
         {
             //The Player Has Collided With The Exit Door
-            SceneManager.LoadScene("Level02");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         }
 
-        if (collision.gameObject.CompareTag("Level02Respawn"))
+        /*if (collision.gameObject.CompareTag("Level02Respawn"))
         {
             //The Player Has Collided With The Out Of World Ground Barrier
             SceneManager.LoadScene("Level02");
 
-        }
+        }*/
 
     }
 
@@ -252,7 +260,74 @@ public class MovementScript : MonoBehaviour
 
 
 
+    string CurrentWeapon = "Pistol"; // The current weapon the player have in his hand
+    public GameObject Ball; //The gameobject that the player will shoot
+    public float ReloadingMaxTime; //The max reloading time. Feel free to put in into 0 if you want
+    float Reload, AnimationTime; //Miscealenous variable
+    public Text ReloadText; //The text that will indicate player that he are realoding
 
+    void Weapon() //This will manage weapon
+    {
+        //If we must show the ReloadText
+        if (Reload > 0)
+        {
+            //Make the float reduce by 1 every seconds
+            AnimationTime -= 1 * Time.deltaTime;
+            if (AnimationTime <= 0)
+            {
+                //Animation Stuff
+                if (ReloadText.text == "Reloading.")
+                {
+                    ReloadText.text = "Reloading..";
+                }
+                else if (ReloadText.text == "Reloading..")
+                {
+                    ReloadText.text = "Reloading...";
+                }
+                else
+                {
+                    ReloadText.text = "Reloading.";
+                }
+
+                //Get a time in function of the maxreloading time
+                AnimationTime = ReloadingMaxTime / 5;
+            }
+        }
+        else
+        {
+            //Don't show the text because we are not reloading
+            ReloadText.text = null;
+            AnimationTime = -1;
+        }
+
+        //Make the float reduce by 1 every seconds
+        Reload -= 1 * Time.deltaTime;
+        if (CurrentWeapon == "Pistol" && Input.GetMouseButtonDown(0) && Reload <= 0) //Check if the left button is triggers
+        {
+            //Check if the character look to the left or to the right
+            if (transform.rotation.eulerAngles.y >= 100)
+            {
+                Ammo S = Ball.GetComponent<Ammo>();
+                S.Direction = "Left"; //Set the direction of the ball to the left so he will go to the left
+
+                // Get the new ball to be to the position of the player + Offset
+                Ball.transform.position = new Vector3(this.transform.position.x - 0.4f, this.transform.position.y + 1, 0);
+            }
+            else
+            {
+                Ammo S = Ball.GetComponent<Ammo>();
+                S.Direction = "Right"; //Set the direction of the ball to the right so he will go to the left
+
+                // Get the new ball to be to the position of the player + Offset
+                Ball.transform.position = new Vector3(this.transform.position.x + 0.4f, this.transform.position.y + 1, 0);
+            }
+
+            //Create the ball at the position we give to him
+            Instantiate(Ball);
+            //Set the reload float to his max reload
+            Reload = ReloadingMaxTime;
+        }
+    }
 
     //This is the coroutine
     public IEnumerator LoadSceneAfterXSecs(string NameToLoad, float XSecs)
