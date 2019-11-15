@@ -14,8 +14,6 @@ public class MovementScript : MonoBehaviour
     private int _score = 0;
     private Score _uiManager;
 
-    [SerializeField] float Speed = 10;
-    [SerializeField] float jumpForce = 5;
     Rigidbody2D rb;
 
     private bool OnGround = true;
@@ -66,16 +64,105 @@ public class MovementScript : MonoBehaviour
     public Sprite AstroStay;
     float x;
 
+    [SerializeField] float Speed = 10;
+    public float LimiteX, LimiteY;
+    public float Deceleration;
+    [SerializeField] float jumpForce = 5;
+    public float LimiteXWhenJumping;
+
     void Move()
     {
         //This take the animator component for verifying if he need to walk or not
         Animator thisAnimator = this.GetComponent<Animator>();
 
+        //IT'S THE BEGINNING FOR MOVEMENT OTHER HIS ANIMATION
+
         x = Input.GetAxisRaw("Horizontal");
 
-        float moveBy = x * Speed;
+        float moveBy = x * Speed * 30;
 
-        rb.velocity = new Vector2(moveBy, rb.velocity.y);
+        if (OnGround)
+        {
+            //If the player want to go in a opposite ways where the character go so make him move faster
+            //It's for making the movement more fluid
+            if (moveBy < 0 && rb.velocity.x > 0)
+            {
+                //Deceleration is the speed of the player for switch to one direction to another
+                rb.AddForce(new Vector2(moveBy * Deceleration, 0));
+            }
+            else if (moveBy > 0 && rb.velocity.x < 0)
+            {
+                rb.AddForce(new Vector2(moveBy * Deceleration, 0));
+            }
+            else
+            {
+                rb.AddForce(new Vector2(moveBy, 0));
+            }
+        }
+        else
+        {
+            //If the player is in the air so make him less movable
+            rb.AddForce(new Vector2(moveBy / 2, 0));
+        }
+
+        // This will care the speed limit that character can't reach
+        float xVelo = rb.velocity.x, yVelo = rb.velocity.y;
+        bool xIsNegative = false, yIsNegative = false;
+
+        if (xVelo < 0)
+        {
+            xIsNegative = true;
+            xVelo *= -1;
+        }
+
+        if (OnGround)
+        {
+            if (xVelo > LimiteX)
+            {
+                if (xIsNegative)
+                {
+                    rb.velocity = new Vector2(-LimiteX, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(LimiteX, rb.velocity.y);
+                }
+            }
+        }
+        else
+        {
+            if (xVelo > LimiteXWhenJumping)
+            {
+                if (xIsNegative)
+                {
+                    rb.velocity = new Vector2(-LimiteXWhenJumping, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(LimiteXWhenJumping, rb.velocity.y);
+                }
+            }
+        }
+
+        if (yVelo < 0)
+        {
+            yIsNegative = true;
+            yVelo *= -1;
+        }
+
+        if (yVelo > LimiteY)
+        {
+            if (yIsNegative)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -LimiteY);
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, LimiteY);
+            }
+        }
+
+        //IT'S THE END FOR MOVEMENT OTHER HIS ANIMATION
 
         _uiManager = GameObject.Find("Canvas").GetComponent<Score>();
 
@@ -114,7 +201,7 @@ public class MovementScript : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && OnGround && IsAlive)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && OnGround && IsAlive)
         //Checking If The Player Is On The Ground (To Prevent Double Jumping) Before Allowing Them To Jump
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);

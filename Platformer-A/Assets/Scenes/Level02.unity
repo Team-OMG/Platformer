@@ -1160,6 +1160,36 @@ PrefabInstance:
       propertyPath: ReloadingMaxTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7911653724626622691, guid: de55c9741c5a9ff429112752c8f3a39d,
+        type: 3}
+      propertyPath: jumpForce
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911653724626622691, guid: de55c9741c5a9ff429112752c8f3a39d,
+        type: 3}
+      propertyPath: LimiteX
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911653724626622691, guid: de55c9741c5a9ff429112752c8f3a39d,
+        type: 3}
+      propertyPath: LimiteY
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911653724626622691, guid: de55c9741c5a9ff429112752c8f3a39d,
+        type: 3}
+      propertyPath: Speed
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911653724626622691, guid: de55c9741c5a9ff429112752c8f3a39d,
+        type: 3}
+      propertyPath: LimiteXWhenJumping
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911653724626622691, guid: de55c9741c5a9ff429112752c8f3a39d,
+        type: 3}
+      propertyPath: Deceleration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7911653724626622693, guid: de55c9741c5a9ff429112752c8f3a39d,
         type: 3}
       propertyPath: m_Enabled
