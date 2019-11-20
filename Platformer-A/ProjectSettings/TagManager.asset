@@ -11,6 +11,7 @@ TagManager:
   - Damage
   - Level02Respawn
   - DoorExitLevel1
+  - Ball
   layers:
   - Default
   - TransparentFX
