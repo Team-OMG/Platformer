@@ -16,7 +16,7 @@ The Wiki Is Kept Up To Date And Maintained By Team-OMG And The Developers Of Pla
 ----------------------------------------------------
 -https://github.com/AmazingMat - Programmer/Game Design And Lore
 ----------------------------------------------------
--https://github.com/danielunitydev - Programmer/Game Design
+-https://github.com/samuelunitydev - Programmer/Game Design
 ----------------------------------------------------
 -https://github.com/HighPulpOrangeJuice - SoundFX
 ----------------------------------------------------
